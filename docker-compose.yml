@@ -4,10 +4,25 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile
+    restart: always
     container_name: efuse-app
     volumes:
       - ./app:/home/node/app
     ports:
       - "3000:3000"
 
+    environment:
+      - PORT=3000
     command: npm run dev
+
+  mongo:
+    image: mongo:5.0.6
+    container_name: mongo
+    restart: always
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - "27017:27017"
+
+volumes:
+  mongodb:
