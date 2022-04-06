@@ -1,0 +1,13 @@
+services:
+  app:
+    image: efuse-app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: efuse-app
+    volumes:
+      - ./app:/home/node/app
+    ports:
+      - "3000:3000"
+
+    command: npm run dev
